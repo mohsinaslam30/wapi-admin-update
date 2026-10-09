@@ -1,0 +1,51 @@
+# Wapi Project Rules & Standards
+
+Whenever starting a new module or modifying existing ones, follow these rules to ensure consistency and maintainability.
+
+## 1. Theming & Styling
+- [REQUIRED] Use CSS variables for all colors (e.g., `text-primary`, `bg-background`, `border-border`).
+- [FORBIDDEN] Avoid hardcoded Tailwind colors like `text-purple-600`, `bg-red-500`, etc.
+- [ALPHA COLORS] For transparent colors or shadows, use the RGB variables: `rgba(var(--primary-rgb), 0.5)`.
+- [THEME MODES] Ensure all components have proper contrast and look premium in both Light and Dark modes.
+
+## 2. Component Structure & Reusability
+- [COMMON COMPONENTS] If a UI pattern (like a table, filter bar, or modal) is used in more than one place, it MUST be turned into a reusable component in `@/components/reusable`.
+- [RESUSE IT] Existing reusable components (like `DataTable`, `Pagination`, `ConfirmationModal`) must be prioritized over building new logic. Never recreate what already exists.
+- [UI] Use Shadcn/UI components from `@/src/elements/ui`.
+- [FEATURE] Feature-specific logic and complex components go in `@/src/components/feature/{module-name}`.
+- [LAYOUT] Main layout parts (Sidebar, Header) reside in `@/src/layout`.
+- [EXPORTS] Use default exports for all components. Follow this pattern:
+  ```tsx
+  const ComponentName = () => {
+    return ( ... );
+  };
+  export default ComponentName;
+  ```
+
+## 3. Data Handling & Forms
+- [API] Use RTK Query hooks for all data fetching and mutations from `@/src/redux/api`.
+- [FORMS] Use Formik for form management and Yup for validation.
+- [VALIDATION] Centralize validation schemas in `@/src/utils/validation-schemas`.
+- [ROUTING] Never hardcode paths. Always use the `ROUTES` constant from `@/constants/routes`.
+
+## 4. i18next (Internationalization)
+- [USAGE] Use the `t()` function from `useTranslation()` for all labels, placeholders, and messages.
+- [KEY NAMING] Use clear, hierarchical keys in the JSON (e.g., `"auth": { "login": "Sign In" }`).
+- [VARIABLE NAMING] Use snake_case for keys (e.g., `settings_title`, `email_required`) and avoid using English sentences as keys.
+
+## 5. UI Patterns & Aesthetics
+- [TABLES] Always use the reusable `DataTable` component for lists and data display.
+- [MODALS] Standardize confirmation flows using `ConfirmationModal`.
+- [NOTIFICATIONS] Use `sonner` for toast notifications with `richColors`.
+- [LOADERS] Use `Loader2` from `lucide-react` with `animate-spin`.
+- [ANIMATIONS] Use project-wide animations (e.g., `animate-fade-in`, `animate-scale-in`) for all transitions.
+- [IMAGES] Use `next/image` for all images. For API images, use the proper base URL environment variables.
+
+## 6. Clean Code & Types
+- [TYPES] Maintain strict TypeScript types in `@/src/types`.
+- [HOOKS] Place reusable logic in `@/src/hooks`.
+- [IMPORTS] Use absolute aliases (e.g., `@/src/elements/ui`, `@/src/utils`).
+- [FILES] Keep components small and modular; split complex files into smaller sub-components.
+
+## 7. Routes and api
+- [PAGES] Create the Page routes as well in the @/src/api folders
