@@ -8,14 +8,10 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ["unzipper"],
   env: {
     NEXT_PUBLIC_BASE_PATH: BASE_PATH,
-    // NEXT_PUBLIC_API_URL: "https://wapi-node.pixelstrap.com/api",
-    // NEXT_PUBLIC_API_BASE_URL: BASE_PATH + "/api",
-    // NEXT_PUBLIC_STORAGE_URL: "https://wapi-node.pixelstrap.com",
-    // NEXT_PUBLIC_FRONT_URL: "https://wapi-frontend-sigma.vercel.app",
-    NEXT_PUBLIC_API_URL: "http://localhost:5000/api",
+    NEXT_PUBLIC_API_URL: "https://crm.whatscloud.shop/api",
     NEXT_PUBLIC_API_BASE_URL: BASE_PATH + "/api",
-    NEXT_PUBLIC_STORAGE_URL: "http://localhost:5000",
-    NEXT_PUBLIC_FRONT_URL: "http://localhost:3000",
+    NEXT_PUBLIC_STORAGE_URL: "https://crm.whatscloud.shop",
+    NEXT_PUBLIC_FRONT_URL: "https://whatscloud.shop",
   },
   redirects: async () => {
     const list: any[] = [
@@ -49,16 +45,14 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "localhost",
       },
-
       {
         protocol: "http",
         hostname: "127.0.0.1",
       },
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "crm.whatscloud.shop",
       },
-
     ],
   },
 };
